@@ -57,7 +57,7 @@ func (s *Sharding) createMySQLSequenceKeyIfNotExist(tableName string) error {
 		return fmt.Errorf("failed to create sequence table: %w", stmt.Error)
 	}
 	var count int
-	err := s.DB.Raw("SELECT COUNT(*) FROM `" + mySQLSeqName(tableName) + "`").Scan(&count)
+	err := s.DB.Raw("SELECT COUNT(*) FROM `" + mySQLSeqName(tableName) + "`").Scan(&count).Error
 	if err != nil {
 		return fmt.Errorf("failed to check sequence table data: %w", err)
 	}
